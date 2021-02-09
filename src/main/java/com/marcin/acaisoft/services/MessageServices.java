@@ -1,5 +1,6 @@
 package com.marcin.acaisoft.services;
 
+import com.marcin.acaisoft.constant.Constant;
 import com.marcin.acaisoft.dto.Send;
 import com.marcin.acaisoft.models.Message;
 import com.marcin.acaisoft.repositories.MessageRepositories;
@@ -15,7 +16,6 @@ import java.util.UUID;
 @Service
 public class MessageServices {
 
-    public static final Integer TTL = 300;
     private final MessageRepositories messageRepositories;
     private final EmailService emailService;
 
@@ -26,7 +26,7 @@ public class MessageServices {
 
     public Mono<Message> create(Message message){
         message.setId(UUID.randomUUID());
-        return Mono.just(messageRepositories.save(message, TTL));
+        return Mono.just(messageRepositories.save(message, Constant.TTL));
     }
 
     public Flux<Message> getAllByEmail(String email, Integer page, Integer size){
