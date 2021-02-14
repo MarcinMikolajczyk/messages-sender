@@ -2,6 +2,7 @@ package com.marcin.acaisoft.services;
 
 import com.marcin.acaisoft.constant.Constant;
 import com.marcin.acaisoft.dto.Send;
+import com.marcin.acaisoft.exeptions.MessageNotFoundExeption;
 import com.marcin.acaisoft.models.Message;
 import com.marcin.acaisoft.repositories.MessageRepositories;
 import org.springframework.data.cassandra.core.query.CassandraPageRequest;
@@ -43,6 +44,7 @@ public class MessageServices {
 
     public void send(Send send){
         List<Message> messageList = messageRepositories.findAllByMagicNumber(send.getMagicNumber());
+        if (messageList.isEmpty()) throw new MessageNotFoundExeption("magic_number", String.valueOf(send.getMagicNumber()));
         messageList.stream().forEach(emailService::send);
         messageRepositories.deleteAll(messageList);
     }
