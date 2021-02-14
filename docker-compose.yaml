@@ -1,0 +1,19 @@
+version: '3.1'
+services:
+  messages-sender:
+    image: messages-sender:latest
+    depends_on:
+      - cassandra
+    ports:
+      - 8080:8080
+    environment:
+      - SPRING.DATA.CASSANDRA.CONTACT-POINTS=cassandra-db
+      - SPRING.DATA.CASSANDRA.KEYSPACE-NAME=practice
+  cassandra:
+    image: cassandra
+    container_name: cassandra-db
+    ports:
+      - '9042:9042'
+    volumes:
+      - /home/marcin/cassandra_data:/var/lib/cassandra
+  

@@ -4,6 +4,7 @@ package com.marcin.acaisoft.controllers;
 import com.marcin.acaisoft.dto.Send;
 import com.marcin.acaisoft.models.Message;
 import com.marcin.acaisoft.services.MessageServices;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +76,7 @@ class MessageControllerTest {
                 .expectStatus()
                 .isOk();
     }
+
 
     @Test
     @DisplayName("Should send message and return ok status")
