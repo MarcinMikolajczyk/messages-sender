@@ -4,7 +4,9 @@ The program requires the Cassandra database to run. The database must be listeni
 
 To run the application, first you need to pull cassandra database from docker hub:
 `docker pull cassandra`
-Data should be stored in a volume. Create a key-space for messages-sender, by default in
+Data should be stored in a volume,
+you can change the directory where you want to store the data by modifying the value `volumes:`
+in the docker-compose.yaml file. Create a key-space for messages-sender, by default in
 the docker-compose.yaml file the key-space is called "practice".
 
 Then build the image using the Dockerfile:
