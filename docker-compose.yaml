@@ -9,6 +9,7 @@ services:
     environment:
       - SPRING.DATA.CASSANDRA.CONTACT-POINTS=cassandra-db
       - SPRING.DATA.CASSANDRA.KEYSPACE-NAME=practice
+      - SPRING.DATA.CASSANDRA.PORT=9042
   cassandra:
     image: cassandra
     container_name: cassandra-db
@@ -16,4 +17,3 @@ services:
       - '9042:9042'
     volumes:
       - /home/marcin/cassandra_data:/var/lib/cassandra
-  
